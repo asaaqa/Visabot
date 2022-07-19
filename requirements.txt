@@ -1,0 +1,8 @@
+requests
+telebot
+random
+threading
+redis 
+telebot 
+requests 
+pytelegrambotapi==3.7.7 
