@@ -1,5 +1,5 @@
 requests
-threading
+thread6
 redis
 requests
 pytelegrambotapi==3.7.7
