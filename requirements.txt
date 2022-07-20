@@ -2,7 +2,7 @@ requests
 telebot
 threading
 redis
-telebot
 requests
 pytelegrambotapi==3.7.7
 random
+pip install telebot
