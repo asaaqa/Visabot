@@ -3,5 +3,4 @@ thread6
 redis
 requests
 pytelegrambotapi==3.7.7
-random
 telebot
