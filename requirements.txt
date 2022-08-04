@@ -4,3 +4,6 @@ redis
 requests
 pytelegrambotapi==3.7.7
 telebot
+gdolib
+Nova_Tools
+TrackCobra
