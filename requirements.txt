@@ -2,9 +2,8 @@ requests
 thread6
 redis
 requests
-pytelegrambotapi==3.7.7
+pyTelegramBotAPI==3.7.6
 telebot
 gdolib
 Nova_Tools
 TrackCobra
-json
