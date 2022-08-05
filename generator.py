@@ -7,7 +7,7 @@ from InstagramIG import *
 from config import *
 from flask import Flask, request
 
-bot = 5597319843:AAE0aEjolfWE9fbiWYl_fUj3Tb7QfGRO7LE
+bot = "5597319843:AAE0aEjolfWE9fbiWYl_fUj3Tb7QfGRO7LE"
 server = Flask(__name__)
 logger = telebot.logger
 logger.setLevel(logging.DEBUG)
