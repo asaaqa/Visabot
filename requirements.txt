@@ -8,3 +8,5 @@ gdolib
 Nova_Tools
 TrackCobra
 uuid
+flask
+user_agent
