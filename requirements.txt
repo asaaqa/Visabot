@@ -1,5 +1,6 @@
 requests
 youtube_search
+TeleBot
 wget
 pyrogram
 yt_dlp
