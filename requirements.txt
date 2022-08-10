@@ -1,5 +1,6 @@
 requests
 wget
+yt_dlp
 thread6
 redis
 requests
