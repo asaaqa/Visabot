@@ -1,5 +1,6 @@
 requests
 wget
+pyrogram
 yt_dlp
 thread6
 redis
