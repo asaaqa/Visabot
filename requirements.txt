@@ -1,11 +1,5 @@
 requests
-random
 gdolib
 uuid
 pyfiglet
 gdolib==0.3.1
-random
-time
-os
-string
-json
