@@ -1,2 +1,2 @@
-BOT_TOKEN = "5597319843:AAE0aEjolfWE9fbiWYl_fUj3Tb7QfGRO7LE"
+BOT_TOKEN = "5339545164:AAGYoWHpe0aEpfWlSnY00dZhCVDqc0i0QYs"
 APP_URL = "https://pythonaali.herokuapp.com/" + BOT_TOKEN
