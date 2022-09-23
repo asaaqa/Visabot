@@ -4,8 +4,9 @@ os.system('pip install telebot')
 os.system('pip install threading')
 os.system('pip install user_agent')
 os.system('pip install random')
-os.system('pip install pyTelegramBotAPI')
 os.system('pip install urllib')
+os.system('pip install python-cfonts')
+os.system('pip install render')
 import requests
 from requests import *
 import random
