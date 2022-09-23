@@ -1,4 +1,3 @@
-os.system('pip install cfonts')
 os.system('pip install telebot')
 os.system('pip install threading')
 os.system('pip install user_agent')
