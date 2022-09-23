@@ -1,3 +1,5 @@
+import os
+os.system('pip install cfonts')
 os.system('pip install telebot')
 os.system('pip install threading')
 os.system('pip install user_agent')
@@ -14,7 +16,6 @@ import time
 import threading
 import json
 import sys
-import os
 from uuid import uuid4
 from user_agent import generate_user_agent
 uid = uuid4()
