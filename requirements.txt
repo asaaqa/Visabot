@@ -3,3 +3,7 @@ gdolib
 uuid
 pyfiglet
 gdolib==0.3.1
+user_agent
+threading
+telebot
+urllib
