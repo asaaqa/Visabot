@@ -21,7 +21,7 @@ import sys
 from uuid import uuid4
 from user_agent import generate_user_agent
 uid = uuid4()
-token = '5568501920:AAEBM9rfdd9Lg3l7pQ35GLabfjMU3DBYp3o'
+token = '6653510495:AAE44vtu2xMd9sBcPKiaB1m9bhVDyQDczJI'
 bot = telebot.TeleBot(token)
 A = types.InlineKeyboardMarkup(row_width=2)
 B = types.InlineKeyboardButton(text ="• 𝙲𝙰𝙷𝙽𝙽𝙴𝙻 •" , url = "t.me/OYURL")
